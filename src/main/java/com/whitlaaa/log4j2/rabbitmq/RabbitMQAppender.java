@@ -52,7 +52,7 @@ public final class RabbitMQAppender extends AbstractAppender {
         try {
             manager.publish(logEvent.getMessage());
         } catch (IOException e) {
-            LOGGER.error("Unable to publish message: " + logEvent.toString(), e);
+            LOGGER.error("Unable to publish message to RabbitMQ: " + logEvent.toString(), e);
         }
     }
     
