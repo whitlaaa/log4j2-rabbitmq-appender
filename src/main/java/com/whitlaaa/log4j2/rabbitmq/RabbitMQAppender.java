@@ -21,7 +21,7 @@ public final class RabbitMQAppender extends AbstractAppender {
         super(name, filter, layout, ignoreExceptions);
         
         if (manager == null) {
-            throw new IllegalArgumentException("The provided RabbitMQManager is null");
+            throw new IllegalArgumentException("The provided RabbitMQAppenderManager is null");
         }
         
         this.manager = manager;
