@@ -1,6 +1,11 @@
 package com.whitlaaa.log4j2.rabbitmq;
 
-import org.junit.Assert;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
+
 import org.junit.Test;
 
 public class QueueConfigTest {
@@ -9,19 +14,19 @@ public class QueueConfigTest {
     public void default_ValidState_DefaultInstanceCreated() {
         QueueConfig config = QueueConfig.DEFAULT;
 
-        Assert.assertNotNull(config);
+        assertNotNull(config);
     }
 
     @Test
     public void createQueueConfig_ValidValues_Created() {
         QueueConfig config = QueueConfig.createQueueConfig("testname", "testkey", true, false, false, true);
 
-        Assert.assertEquals("testname", config.getName());
-        Assert.assertEquals("testkey", config.getRoutingKey());
-        Assert.assertTrue(config.isDurable());
-        Assert.assertFalse(config.isExclusive());
-        Assert.assertFalse(config.isAutoDelete());
-        Assert.assertTrue(config.isDeclare());
+        assertEquals("testname", config.getName());
+        assertEquals("testkey", config.getRoutingKey());
+        assertTrue(config.isDurable());
+        assertFalse(config.isExclusive());
+        assertFalse(config.isAutoDelete());
+        assertTrue(config.isDeclare());
     }
 
     @Test
@@ -29,7 +34,7 @@ public class QueueConfigTest {
         QueueConfig config1 = QueueConfig.createQueueConfig("testname", "testkey", true, false, false, true);
         QueueConfig config2 = QueueConfig.createQueueConfig("testname", "testkey", true, false, false, true);
 
-        Assert.assertEquals(config1, config2);
+        assertEquals(config1, config2);
     }
 
     @Test
@@ -37,7 +42,7 @@ public class QueueConfigTest {
         QueueConfig config1 = QueueConfig.createQueueConfig("testname", "testkey", true, false, false, true);
         QueueConfig config2 = QueueConfig.createQueueConfig("testname", "testkey", true, false, false, true);
 
-        Assert.assertEquals(config1.hashCode(), config2.hashCode());
+        assertEquals(config1.hashCode(), config2.hashCode());
     }
 
     @Test
@@ -45,7 +50,7 @@ public class QueueConfigTest {
         QueueConfig config1 = QueueConfig.createQueueConfig("testname", "testkey", true, false, false, true);
         QueueConfig config2 = QueueConfig.createQueueConfig("testname", "fakekey", true, false, false, true);
 
-        Assert.assertNotEquals(config1, config2);
+        assertNotEquals(config1, config2);
     }
 
     @Test
@@ -53,6 +58,6 @@ public class QueueConfigTest {
         QueueConfig config1 = QueueConfig.createQueueConfig("testname", "testkey", true, false, false, true);
         QueueConfig config2 = QueueConfig.createQueueConfig("testname", "fakekey", true, false, false, true);
 
-        Assert.assertNotEquals(config1.hashCode(), config2.hashCode());
+        assertNotEquals(config1.hashCode(), config2.hashCode());
     }
 }
